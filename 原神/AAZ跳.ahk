@@ -30,28 +30,42 @@ Suspend(True)
 
 LButton::
 {
-    SetTimer(PressSpace, 1) ; 一次左键完成一次AZ跳
+    PressSpace ; 一次左键完成一次AZ跳
     return
 }
 
 PressSpace()
-{
+{ ; 参考 https://www.bilibili.com/video/BV1sR4y1B7f2/?vd_source=5103c6036b26dee54f3e792a32d5df57
     state := GetKeyState("LButton") 
     if state = False ; 用户未按下  
     {
       BlockInput("SendAndMouse")
       SetKeyDelay(-1)
-      SendInput("{LButton}") ; A
-      Sleep(200)
-      SendInput("{LButton}") ; A
-      Sleep(50) 
+      ; A
+      SendInput("{LButton down}")
+      Sleep(40)
+      SendInput("{LButton up}")
+
+      Sleep(100)
+
+      ; A
+      SendInput("{LButton down}")
+      Sleep(40)
+      SendInput("{LButton up}")
+
+      Sleep(40) 
+      
+      ; Z
       SendInput("{LButton down}") ;z start
-      Sleep(350)
+      Sleep(330)
       SendInput("{LButton up}") ;z end
-      Send("{Space}")   ; 跳
-    ;   Sleep(450)
+
+      ; 跳
+      Send("{Space down}")
+      Sleep(10)
+      Send("{Space UP}")
+
       BlockInput("Default")
-      SetTimer(PressSpace, 0)
     }
     return
 }
