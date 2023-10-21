@@ -24,9 +24,12 @@ Suspend(True)
 ~2::Suspend(True)
 ~3::Suspend(True)
 ~1::Suspend(True)
+~5::Suspend(True)
 ~Esc::Suspend(True)
 ; ~RButton::Suspend(True)
 ~Q::Suspend(True)
+~M::Suspend(True)
+~C::Suspend(True)
 
 LButton::
 {
@@ -43,24 +46,25 @@ PressSpace()
       SetKeyDelay(-1)
       ; A
       SendInput("{LButton down}")
-      Sleep(40)
+      Sleep(50)
       SendInput("{LButton up}")
 
-      Sleep(100)
+      Sleep(200)
 
       ; A
       SendInput("{LButton down}")
-      Sleep(40)
+      Sleep(50)
       SendInput("{LButton up}")
 
-      Sleep(40) 
+      Sleep(100) 
       
       ; Z
       SendInput("{LButton down}") ;z start
-      Sleep(330)
+      Sleep(280)
       SendInput("{LButton up}") ;z end
 
       ; 跳
+      Sleep(20)
       Send("{Space down}")
       Sleep(10)
       Send("{Space UP}")
