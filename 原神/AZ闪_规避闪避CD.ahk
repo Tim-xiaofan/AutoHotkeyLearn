@@ -50,13 +50,27 @@ reset()
     Suspend(True)
     reset()
 }
+~5::
+{
+    Suspend(True)
+    reset()
+}
 ~Esc::
 {
     Suspend(True)
     reset()
 }
-; ~RButton::Suspend(True)
 ~Q::
+{
+    Suspend(True)
+    reset()
+}
+~M::
+{
+    Suspend(True)
+    reset()
+}
+~C::
 {
     Suspend(True)
     reset()
@@ -64,39 +78,50 @@ reset()
 
 LButton::
 {
-    SetTimer(Press, 1) ; 一次左键完成一次AZ闪
+     SetTimer(Press, 1) ; 一次左键完成一次AZ闪
     return
 }
 
 PressSpace() ;AZ跳
 {
     SendInput("{LButton down}") ;A
-    Sleep(390)
+    Sleep(420)
     SendInput("{LButton up}") ;z
-    Sleep(50)
+    Sleep(20)
     Send("{Space down}")   ; space DOWN
     Sleep(30)
     Send("{Space UP}") ; space UP
+
+    sleep(30)
 }
 
 PressShift() ;AZ闪
 {
-    SendInput("{LButton down}") ;L DOWN
-    Sleep(390)
-    SendInput("{LButton up}") ;L UP
-    Sleep(50)
-    SendInput("{RButton down}") ; R DOWN
+    ; AZ
+    SendInput("{LButton down}") ;z start
+    Sleep(450)
+    SendInput("{LButton up}") ;z end
+ 
+    ; 闪避 
+    Sleep(20)
+    SendInput("{RButton down}")
     Sleep(30)
-    send("{s down}") ; S DOWN
+    SendInput("{RButton up}")
+ 
+    ; S
+    Sleep(20)
+    send("{s down}")
+    Sleep(100)
+    send("{s up}")
+ 
+    ; W
     Sleep(50)
-    send("{s up}") ; S UP
-    Sleep(30)
-    SendInput("{RButton up}") ; R UP
-    Sleep(30)
-    Send("{w down}") ; W DOWN
+    Send("{w down}")
     Sleep(50)
-    Send("{w up}") ; W UP
-    ; Sleep(30)
+    Send("{w up}")
+
+    sleep(80)
+
     global gShiftCount
     ++gShiftCount
 }
